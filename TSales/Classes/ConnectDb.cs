@@ -26,7 +26,7 @@ namespace TSales.Classes {
             var db = ini.Read("base");
 
             //try {
-            string con = ($"Server={ip}; Port={porta}; Database=base_tsales; User Id=thomas; Password=@2t24F5D4n75Z8foE8541Gj54gS5+878a@341R5$sGa4ES5$j%D14s#5d!5;");
+            string con = ($"Server={ip}; Port={porta}; Database=base_tsales; User Id=thomas; Password=1;");
             conn.ConnectionString = con;
             Connect = conn.ConnectionString;    
             //} catch (Exception ex) {

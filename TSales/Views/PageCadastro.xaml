@@ -1,0 +1,234 @@
+﻿<Controls:MetroWindow
+    x:Class="TSales.Views.PageCadastro"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"    
+    xmlns:local="clr-namespace:TSales.Views"
+    mc:Ignorable="d"
+    Title="PageCadastro" 
+    Height="480" 
+    MinHeight="480"        
+    MaxHeight="480"
+    Width="854"
+    MinWidth="854"
+    MaxWidth="854"
+    ResizeMode="NoResize"
+    WindowStartupLocation="CenterScreen" 
+    Loaded="Window_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Label 
+            Content="Código" 
+            Grid.Row="0" 
+            Grid.Column="0" 
+            HorizontalAlignment="Center" 
+            Margin="10" 
+            FontSize="15" 
+            Style="{StaticResource ResourceKey=MahApps.Styles.Label}"/>
+        <TextBox 
+            x:Name="txbCodigo" 
+            Grid.Row="0" 
+            Grid.Column="0" 
+            VerticalAlignment="Bottom" 
+            HorizontalAlignment="Center" 
+            TextAlignment="Center" 
+            Width="80" 
+            Height="30" 
+            FontSize="15" 
+            Style="{StaticResource ResourceKey=MahApps.Styles.TextBox}" 
+            KeyDown="txbCodigo_KeyDown" 
+            CharacterCasing="Upper"/>        
+        <Label 
+            Content="Nome" 
+            Grid.Row="0" 
+            Grid.Column="1" 
+            Grid.ColumnSpan="4" 
+            HorizontalAlignment="Center" 
+            FontSize="15" 
+            Margin="10" 
+            Style="{StaticResource ResourceKey=MahApps.Styles.Label}"/>
+        <TextBox 
+            x:Name="txbNome" 
+            Grid.Row="0" 
+            Grid.Column="1" 
+            Grid.ColumnSpan="4" 
+            VerticalAlignment="Bottom" 
+            HorizontalAlignment="Center" 
+            TextAlignment="Left" 
+            Width="465" 
+            Height="30" 
+            FontSize="15" 
+            Style="{StaticResource ResourceKey=MahApps.Styles.TextBox}" 
+            KeyDown="txbNome_KeyDown" 
+            CharacterCasing="Upper"/>
+        <Label 
+            Content="CNPJ/CPF" 
+            Grid.Row="0" 
+            Grid.Column="5" 
+            Grid.ColumnSpan="6" 
+            HorizontalAlignment="Center" 
+            FontSize="15" 
+            Margin="10" 
+            Style="{StaticResource ResourceKey=MahApps.Styles.Label}"/>
+        <TextBox 
+            x:Name="txbCpfcnpj" 
+            Grid.Row="0" 
+            Grid.Column="5" 
+            Grid.ColumnSpan="6" 
+            VerticalAlignment="Bottom" 
+            HorizontalAlignment="Center" 
+            TextAlignment="Center" 
+            Width="200" 
+            Height="30" 
+            FontSize="15" 
+            Style="{StaticResource ResourceKey=MahApps.Styles.TextBox}" 
+            KeyDown="txbCpfcnpj_KeyDown" 
+            CharacterCasing="Upper" 
+            MaxLength="18" 
+            PreviewTextInput="txbCpfcnpj_PreviewTextInput" 
+            TextChanged="txbCpfcnpj_TextChanged"/>
+        <Label 
+            Content="CR" 
+            Grid.Row="2" 
+            Grid.Column="1" 
+            Grid.ColumnSpan="2" 
+            HorizontalAlignment="Center" 
+            FontSize="15" 
+            Margin="10" 
+            Style="{StaticResource ResourceKey=MahApps.Styles.Label}"/>
+        <TextBox 
+            x:Name="txbCr" 
+            Grid.Row="2" 
+            Grid.Column="1" 
+            Grid.ColumnSpan="2" 
+            VerticalAlignment="Bottom" 
+            HorizontalAlignment="Center" 
+            TextAlignment="Center" 
+            Width="200" 
+            Height="30" 
+            FontSize="15" 
+            Style="{StaticResource ResourceKey=MahApps.Styles.TextBox}" 
+            KeyDown="txbCidade_KeyDown" 
+            CharacterCasing="Upper"/>        
+        <Label 
+            Content="Cidade" 
+            Grid.Row="2" 
+            Grid.Column="4" 
+            Grid.ColumnSpan="2" 
+            HorizontalAlignment="Center" 
+            FontSize="15" 
+            Margin="10" 
+            Style="{StaticResource ResourceKey=MahApps.Styles.Label}"/>        
+        <TextBox 
+            x:Name="txbCidade" 
+            Grid.Row="2" 
+            Grid.Column="4" 
+            Grid.ColumnSpan="2" 
+            VerticalAlignment="Bottom" 
+            HorizontalAlignment="Center" 
+            TextAlignment="Center" 
+            Width="200" 
+            Height="30" 
+            FontSize="15" 
+            Style="{StaticResource ResourceKey=MahApps.Styles.TextBox}" 
+            KeyDown="txbCidade_KeyDown" 
+            CharacterCasing="Upper"/>        
+        <Label 
+            Content="Telefone" 
+            Grid.Row="4" 
+            Grid.Column="0" 
+            Grid.ColumnSpan="2"  
+            HorizontalAlignment="Center" 
+            FontSize="15" 
+            Margin="10" 
+            Style="{StaticResource ResourceKey=MahApps.Styles.Label}"/>
+        <TextBox 
+            x:Name="txbTelefone" 
+            Grid.Row="4" 
+            Grid.Column="0" 
+            Grid.ColumnSpan="2" 
+            VerticalAlignment="Bottom" 
+            HorizontalAlignment="Center" 
+            TextAlignment="Center" 
+            Width="200" 
+            Height="30" 
+            FontSize="15" 
+            Style="{StaticResource ResourceKey=MahApps.Styles.TextBox}" 
+            KeyDown="txbTelefone_KeyDown" 
+            CharacterCasing="Upper" 
+            PreviewTextInput="txbTelefone_PreviewTextInput" 
+            TextChanged="txbTelefone_TextChanged"/>
+        <Label 
+            Content="E-mail" 
+            Grid.Row="4" 
+            Grid.Column="3" 
+            Grid.ColumnSpan="4" 
+            HorizontalAlignment="Center" 
+            FontSize="15" 
+            Margin="10" 
+            Style="{StaticResource ResourceKey=MahApps.Styles.Label}"/>
+        <TextBox 
+            x:Name="txbEmail" 
+            Grid.Row="4" 
+            Grid.Column="3" 
+            Grid.ColumnSpan="4" 
+            VerticalAlignment="Bottom" 
+            HorizontalAlignment="Center" 
+            TextAlignment="Center" 
+            Width="440" 
+            Height="30" 
+            FontSize="15" 
+            Style="{StaticResource ResourceKey=MahApps.Styles.TextBox}" 
+            KeyDown="txbEmail_KeyDown" 
+            CharacterCasing="Upper"/>
+        <Button 
+            x:Name="btnSave" 
+            IsDefault="True"
+            Grid.Row="6" 
+            Grid.Column="0" 
+            Grid.ColumnSpan="1" 
+            Width="100" 
+            Height="35" 
+            Content="Salvar"
+            Style="{StaticResource ResourceKey=MahApps.Styles.Button}" 
+            Click="btnSave_Click"/>
+        <Button 
+            x:Name="btnExportar" 
+            Grid.Row="6" 
+            Grid.Column="1" 
+            Width="100" 
+            Height="35" 
+            Content="Exportar"
+            Style="{StaticResource ResourceKey=MahApps.Styles.Button}"/>
+        <Button 
+            x:Name="btnExit" 
+            Grid.Row="6" 
+            Grid.Column="8" 
+            Grid.ColumnSpan="1" 
+            Width="100" 
+            Height="35" 
+            Content="Exit"
+            Style="{StaticResource ResourceKey=MahApps.Styles.Button}" 
+            Click="btnExit_Click"/>
+    </Grid>
+ </Controls:MetroWindow>

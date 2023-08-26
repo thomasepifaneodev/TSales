@@ -2,7 +2,7 @@
 using Npgsql;
 using System;
 using System.Collections.Generic;
-using System.Reflection.PortableExecutable;
+using System.Windows;
 using TSales.Classes;
 
 namespace TSales.Views {
@@ -17,6 +17,9 @@ namespace TSales.Views {
             conn.ConnectionString = connect.ConnectionString();
         }
         private void MetroWindow_Loaded(object sender, System.Windows.RoutedEventArgs e) {
+            Rel();
+        }
+        public void Rel() {
             conn.Open();
             string Clients = "SELECT codigo, nome, cpfcnpj FROM clientes;";
             NpgsqlCommand cmd = new NpgsqlCommand(Clients, conn);
@@ -35,6 +38,33 @@ namespace TSales.Views {
         }
         private void btnExit_Click(object sender, System.Windows.RoutedEventArgs e) {
             this.Close();
+        }
+        private void btnNew_Click(object sender, System.Windows.RoutedEventArgs e) {
+            PageCadastro pageCadastro = new PageCadastro();
+            pageCadastro.ShowDialog();
+        }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e) {
+            deleteItens();
+        }
+        public void deleteItens() {
+            if (Retorno.SelectedItem != null) {
+                var selectedItem = (Clientes)Retorno.SelectedItem;
+
+                try {
+                    using (NpgsqlConnection con = new NpgsqlConnection(conn.ConnectionString)) {
+                        string deleteQuery = $"DELETE FROM clientes WHERE codigo = {selectedItem.Codigo}";
+                        using (NpgsqlCommand command = new NpgsqlCommand(deleteQuery, conn)) {
+                            command.ExecuteNonQuery();
+                        }
+                    }
+                    clientes.Remove(selectedItem);
+                    Retorno.Items.Refresh();
+                } catch (Exception ex) {
+                    MessageBox.Show("Ocorreu um erro ao excluir o item: " + ex.Message);
+                }
+            }
+            Retorno.Items.Refresh();
         }
     }
 }
