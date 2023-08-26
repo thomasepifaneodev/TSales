@@ -14,7 +14,7 @@
     MinHeight="550"                      
     MinWidth="550"
     WindowState="Maximized"
-    WindowStartupLocation="CenterScreen">
+    WindowStartupLocation="CenterScreen" Loaded="MetroWindow_Loaded">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
