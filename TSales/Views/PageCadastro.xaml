@@ -43,7 +43,7 @@
             Grid.Column="0" 
             HorizontalAlignment="Center" 
             Margin="10" 
-            FontSize="15" 
+            FontSize="15"             
             Style="{StaticResource ResourceKey=MahApps.Styles.Label}"/>
         <TextBox 
             x:Name="txbCodigo" 
@@ -55,9 +55,10 @@
             Width="80" 
             Height="30" 
             FontSize="15" 
+            MaxLength="8"
             Style="{StaticResource ResourceKey=MahApps.Styles.TextBox}" 
             KeyDown="txbCodigo_KeyDown" 
-            CharacterCasing="Upper"/>        
+            CharacterCasing="Upper" PreviewTextInput="txbCodigo_PreviewTextInput"/>        
         <Label 
             Content="Nome" 
             Grid.Row="0" 
@@ -65,7 +66,7 @@
             Grid.ColumnSpan="4" 
             HorizontalAlignment="Center" 
             FontSize="15" 
-            Margin="10" 
+            Margin="10"             
             Style="{StaticResource ResourceKey=MahApps.Styles.Label}"/>
         <TextBox 
             x:Name="txbNome" 
@@ -78,6 +79,7 @@
             Width="465" 
             Height="30" 
             FontSize="15" 
+            MaxLength="60"
             Style="{StaticResource ResourceKey=MahApps.Styles.TextBox}" 
             KeyDown="txbNome_KeyDown" 
             CharacterCasing="Upper"/>
@@ -88,7 +90,7 @@
             Grid.ColumnSpan="6" 
             HorizontalAlignment="Center" 
             FontSize="15" 
-            Margin="10" 
+            Margin="10"             
             Style="{StaticResource ResourceKey=MahApps.Styles.Label}"/>
         <TextBox 
             x:Name="txbCpfcnpj" 
@@ -127,9 +129,10 @@
             Width="200" 
             Height="30" 
             FontSize="15" 
+            MaxLength="15"
             Style="{StaticResource ResourceKey=MahApps.Styles.TextBox}" 
             KeyDown="txbCidade_KeyDown" 
-            CharacterCasing="Upper"/>        
+            CharacterCasing="Upper" PreviewTextInput="txbCr_PreviewTextInput"/>        
         <Label 
             Content="Cidade" 
             Grid.Row="2" 
@@ -148,6 +151,7 @@
             HorizontalAlignment="Center" 
             TextAlignment="Center" 
             Width="200" 
+            MaxLength="50"
             Height="30" 
             FontSize="15" 
             Style="{StaticResource ResourceKey=MahApps.Styles.TextBox}" 
@@ -176,13 +180,14 @@
             Style="{StaticResource ResourceKey=MahApps.Styles.TextBox}" 
             KeyDown="txbTelefone_KeyDown" 
             CharacterCasing="Upper" 
+            MaxLength="14"
             PreviewTextInput="txbTelefone_PreviewTextInput" 
             TextChanged="txbTelefone_TextChanged"/>
         <Label 
             Content="E-mail" 
             Grid.Row="4" 
-            Grid.Column="3" 
-            Grid.ColumnSpan="4" 
+            Grid.Column="4" 
+            Grid.ColumnSpan="1" 
             HorizontalAlignment="Center" 
             FontSize="15" 
             Margin="10" 
@@ -190,14 +195,17 @@
         <TextBox 
             x:Name="txbEmail" 
             Grid.Row="4" 
-            Grid.Column="3" 
-            Grid.ColumnSpan="4" 
+            Grid.Column="2" 
+            Grid.ColumnSpan="5" 
             VerticalAlignment="Bottom" 
             HorizontalAlignment="Center" 
+            VerticalContentAlignment="Bottom"
+            HorizontalContentAlignment="Left"
             TextAlignment="Center" 
-            Width="440" 
+            Width="565" 
             Height="30" 
             FontSize="15" 
+            MaxLength="80"
             Style="{StaticResource ResourceKey=MahApps.Styles.TextBox}" 
             KeyDown="txbEmail_KeyDown" 
             CharacterCasing="Upper"/>

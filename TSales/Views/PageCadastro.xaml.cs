@@ -8,6 +8,7 @@ using System.Windows.Input;
 using System.Windows;
 using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace TSales.Views {
     /// <summary>
@@ -24,7 +25,7 @@ namespace TSales.Views {
             connect.ConnectionDb();
             conn.ConnectionString = connect.ConnectionString();
             txbNome.Focus();
-        }
+        }       
         private void btnSave_Click(object sender, RoutedEventArgs e) {
             try {
                 string sql = "SELECT insertclient(@Codigo, @Nome, @CpfCnpj, @Cidade, @Telefone, @Email, @Cr)";
@@ -39,13 +40,14 @@ namespace TSales.Views {
                 cmd.Parameters.AddWithValue("@Cr", txbCr.Text);
                 NpgsqlDataReader reader = cmd.ExecuteReader();
                 rows = reader.HasRows;
-                if (rows == true) {                    
-                    MessageBox.Show("Dados inseridos com sucesso!");                    
+                if (rows == true) {
+                    MessageBox.Show("Dados inseridos com sucesso!");
+                    
                 }
             } catch (Exception) {
                 MessageBox.Show("Preencha todos os dados!");
-            }            
-            this.Close();                        
+            }
+            this.Close();
         }
         private void Window_Loaded(object sender, RoutedEventArgs e) {
             conn.Open();
@@ -218,6 +220,20 @@ namespace TSales.Views {
             }
             txbCpfcnpj.Text = text;
             txbCpfcnpj.CaretIndex = text.Length; // Posiciona o cursor no final do texto formatado
+        }
+        private void txbCodigo_PreviewTextInput(object sender, TextCompositionEventArgs e) {
+            Regex regex = new Regex("[^0-9.]");
+            e.Handled = regex.IsMatch(e.Text);
+            if (e.Text.Contains(".")) {
+                e.Handled = true;
+            }
+        }
+        private void txbCr_PreviewTextInput(object sender, TextCompositionEventArgs e) {
+            Regex regex = new Regex("[^0-9.]");
+            e.Handled = regex.IsMatch(e.Text);
+            if (e.Text.Contains(".")) {
+                e.Handled = true;
+            }
         }
     }
 }

@@ -45,12 +45,17 @@ namespace TSales.Views {
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e) {
-            deleteItens();
+            if (Retorno.SelectedItem != null) {
+                var selectedItem = (Clientes)Retorno.SelectedItem;
+                MessageBoxResult resul = MessageBox.Show($"Tem certeza que deseja excluir o cliente {selectedItem.Nome}?", "Atenção", MessageBoxButton.YesNo);
+                if (resul == MessageBoxResult.Yes) {
+                    deleteItens();
+                }
+            }
         }
         public void deleteItens() {
             if (Retorno.SelectedItem != null) {
                 var selectedItem = (Clientes)Retorno.SelectedItem;
-
                 try {
                     using (NpgsqlConnection con = new NpgsqlConnection(conn.ConnectionString)) {
                         string deleteQuery = $"DELETE FROM clientes WHERE codigo = {selectedItem.Codigo}";
