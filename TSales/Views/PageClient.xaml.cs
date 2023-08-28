@@ -4,25 +4,22 @@ using System;
 using System.Collections.Generic;
 using System.Windows;
 using TSales.Classes;
+using static TSales.MainWindow;
 
 namespace TSales.Views {
     public partial class PageClient : MetroWindow {
-
-        ConnectDb connect = new ConnectDb();
-        List<Clientes> clientes = new List<Clientes>();
-        NpgsqlConnection conn = new NpgsqlConnection();
+        List<Clientes> clientes = new List<Clientes>();        
         public PageClient() {
             InitializeComponent();
-            connect.ConnectionDb();
-            conn.ConnectionString = connect.ConnectionString();
+
         }
         private void MetroWindow_Loaded(object sender, System.Windows.RoutedEventArgs e) {
             Rel();
         }
         public void Rel() {
-            conn.Open();
+            var connection = DbConnectionManager.Instance.OpenConnection();
             string Clients = "SELECT codigo, nome, cpfcnpj FROM clientes;";
-            NpgsqlCommand cmd = new NpgsqlCommand(Clients, conn);
+            NpgsqlCommand cmd = new NpgsqlCommand(Clients, connection);
             NpgsqlDataReader readerClients = cmd.ExecuteReader();
             while (readerClients.Read()) {
                 Clientes cliente = new Clientes {
@@ -35,6 +32,7 @@ namespace TSales.Views {
             readerClients.Close();
             Retorno.ItemsSource = clientes;
             Retorno.Items.Refresh();
+            DbConnectionManager.Instance.CloseConnection();
         }
         private void btnExit_Click(object sender, System.Windows.RoutedEventArgs e) {
             this.Close();
@@ -54,12 +52,13 @@ namespace TSales.Views {
             }
         }
         public void deleteItens() {
+            var connection = DbConnectionManager.Instance.OpenConnection();
             if (Retorno.SelectedItem != null) {
                 var selectedItem = (Clientes)Retorno.SelectedItem;
                 try {
-                    using (NpgsqlConnection con = new NpgsqlConnection(conn.ConnectionString)) {
+                    using (NpgsqlConnection con = new NpgsqlConnection(connection.ConnectionString)) {
                         string deleteQuery = $"DELETE FROM clientes WHERE codigo = {selectedItem.Codigo}";
-                        using (NpgsqlCommand command = new NpgsqlCommand(deleteQuery, conn)) {
+                        using (NpgsqlCommand command = new NpgsqlCommand(deleteQuery, connection)) {
                             command.ExecuteNonQuery();
                         }
                     }
@@ -70,6 +69,7 @@ namespace TSales.Views {
                 }
             }
             Retorno.Items.Refresh();
+            DbConnectionManager.Instance.CloseConnection();
         }
     }
 }

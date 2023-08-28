@@ -1,14 +1,12 @@
 ﻿using MahApps.Metro.Controls;
-using TSales.Views;
-using TSales.Classes;
 using Npgsql;
 using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows;
 using System;
-using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using static TSales.MainWindow;
 
 namespace TSales.Views {
     /// <summary>
@@ -16,20 +14,16 @@ namespace TSales.Views {
     /// </summary>
     public partial class PageCadastro : MetroWindow {
         bool rows;
-        ConnectDb connect = new ConnectDb();
-        List<Clientes> clientes = new List<Clientes>();
-        NpgsqlConnection conn = new NpgsqlConnection();
-
         public PageCadastro() {
             InitializeComponent();
-            connect.ConnectionDb();
-            conn.ConnectionString = connect.ConnectionString();
+
             txbNome.Focus();
-        }       
+        }
         private void btnSave_Click(object sender, RoutedEventArgs e) {
+            var connection = DbConnectionManager.Instance.OpenConnection();
             try {
                 string sql = "SELECT insertclient(@Codigo, @Nome, @CpfCnpj, @Cidade, @Telefone, @Email, @Cr)";
-                NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
+                NpgsqlCommand cmd = new NpgsqlCommand(sql, connection);
                 cmd.Parameters.AddWithValue("@Codigo", int.Parse(txbCodigo.Text));
                 cmd.Parameters.AddWithValue("@Nome", txbNome.Text);
                 cmd.Parameters.AddWithValue("@CpfCnpj", txbCpfcnpj.Text);
@@ -42,17 +36,18 @@ namespace TSales.Views {
                 rows = reader.HasRows;
                 if (rows == true) {
                     MessageBox.Show("Dados inseridos com sucesso!");
-                    
+
                 }
             } catch (Exception) {
                 MessageBox.Show("Preencha todos os dados!");
             }
+            DbConnectionManager.Instance.CloseConnection();
             this.Close();
         }
         private void Window_Loaded(object sender, RoutedEventArgs e) {
-            conn.Open();
+            var connection = DbConnectionManager.Instance.OpenConnection();
             string sql = $"SELECT CASE WHEN MAX(codigo) + 1 IS NULL THEN 1 ELSE MAX(codigo) + 1 END codigo FROM clientes";
-            using (NpgsqlCommand cmd = new NpgsqlCommand(sql, conn)) {
+            using (NpgsqlCommand cmd = new NpgsqlCommand(sql, connection)) {
                 // Obtendo o resultado
                 object result = cmd.ExecuteScalar();
                 // Verificando se o resultado não é nulo
@@ -63,6 +58,7 @@ namespace TSales.Views {
                     txbCodigo.Text = maxCodigo.ToString();
                 }
             }
+            DbConnectionManager.Instance.CloseConnection();
         }
         private void txbCodigo_KeyDown(object sender, KeyEventArgs e) {
             if (e.Key == Key.Enter) {
