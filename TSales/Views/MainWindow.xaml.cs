@@ -6,14 +6,18 @@ using System.Windows;
 using System.IO;
 using System;
 using System.Data;
+using TSales.Classes;
 
 namespace TSales {
     public partial class MainWindow : MetroWindow {
+        string userconnect;
         static string conection;
+
         IniFile ini = new IniFile();
         NpgsqlConnection connect = new NpgsqlConnection();
         public MainWindow() {
             InitializeComponent();
+            ini.Write("currentuser", "");
         }
         private async void ShowLogin(object sender, RoutedEventArgs e) {
             var loginDialogSettings = new LoginDialogSettings {
@@ -22,9 +26,10 @@ namespace TSales {
                 NegativeButtonVisibility = Visibility.Visible,
                 UsernameWatermark = "Usuário",
                 PasswordWatermark = "Senha",
+                UsernameCharacterCasing = System.Windows.Controls.CharacterCasing.Lower,
                 AnimateHide = true,
             };
-            var loginResult = await this.ShowLoginAsync("TSales 1.0.0.0 - LOGIN", "Informe o usuário e senha:", loginDialogSettings);
+            var loginResult = await this.ShowLoginAsync("TSales 1.0.0.0 - Login", "Informe o usuário e senha:", loginDialogSettings);
 
             if (loginResult == null) {// O usuário clicou em Cancelar
                 MessageDialogResult result = await this.ShowMessageAsync("Atenção", "Você escolheu sair?", MessageDialogStyle.AffirmativeAndNegative);
@@ -38,9 +43,13 @@ namespace TSales {
             string username = loginResult.Username;
             string password = loginResult.Password;
 
-            // Agora você pode verificar as credenciais inseridas pelo usuário e tomar ação apropriada.
+            userconnect = username;
+            ini.Write("currentuser", username);
+
+            lblUserLog.Text = "Usuário: " + ini.Read("currentuser");
+
             if (IsValidUser(username, password) == "loginaceito") {
-                // Usuário válido, faça o que for necessário após o login bem-sucedido.
+                IsAdm();
             } else {
                 await this.ShowMessageAsync("Login Falhou", "Usuário e/ou senha inválido.");
                 MetroWindow_Loaded(sender, e);
@@ -72,10 +81,12 @@ namespace TSales {
                     ini.Write("ip", "127.0.0.1");
                     ini.Write("port", "5432");
                     ini.Write("base", "base_");
+                    ini.Write("currentuser", "");
                 }
                 var ip = ini.Read("ip");
                 var port = ini.Read("port");
                 var db = ini.Read("base");
+
                 string con = ($"Server={ip}; Port={port}; Database={db}; User Id={username}; Password={password};");
                 connect.Close();
                 connect.ConnectionString = con;
@@ -102,10 +113,34 @@ namespace TSales {
         }
         private void MetroWindow_Loaded(object sender, RoutedEventArgs e) {
             ShowLogin(sender, e);
+            lblVersao.Text = "Versão: " + "1.0";
+            lblIP.Text = "IP: " + ini.Read("ip");
+            lblPort.Text = "Porta: " + ini.Read("port");
+            lblBase.Text = "Base: " + ini.Read("base");
         }
-        private void btnVendas_Click(object sender, RoutedEventArgs e) {
+        public void IsAdm() {
+            string sql = $"SELECT adm = TRUE AS verificado FROM users WHERE login = '{userconnect}';";
+            NpgsqlCommand cmd = new NpgsqlCommand(sql, connect);
+            NpgsqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read()) {
+                if (reader.GetBoolean(0)) {
+                    btnUser.IsEnabled = true;
+
+                } else {
+                    btnUser.IsEnabled = false;
+                }
+            }
+        }
+        private void btnUser_Click(object sender, RoutedEventArgs e) {
             AddUser add = new AddUser();
             add.ShowDialog();
+        }
+        private void btnLogOff_Click(object sender, RoutedEventArgs e) {
+            MetroWindow_Loaded(sender, e);
+        }
+        private void btnProd_Click(object sender, RoutedEventArgs e) {
+            PageProd pageProd = new PageProd();
+            pageProd.ShowDialog();
         }
     }
 }

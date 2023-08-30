@@ -11,10 +11,11 @@
     Title="TSales Army" 
     Width="1760" 
     Height="990"
-    MinHeight="550"                      
-    MinWidth="550"
+    MinHeight="720"                      
+    MinWidth="1080"
     WindowState="Maximized"
-    WindowStartupLocation="CenterScreen" Loaded="MetroWindow_Loaded">
+    WindowStartupLocation="CenterScreen" 
+    Loaded="MetroWindow_Loaded">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -55,57 +56,75 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="btnCliente" 
-                Margin="30"
+        <Button x:Name="btnCliente"  
+                Margin="15"
                 Grid.Column="0"
                 Grid.ColumnSpan="2"
                 Grid.Row="0"                
-                Grid.RowSpan="2"               
+                Grid.RowSpan="2"  
+                Width="Auto"
+                Height="Auto"
+                MaxWidth="100"
+                MaxHeight="90"          
                 VerticalContentAlignment="Center"
                 HorizontalContentAlignment="Center"
                 Style="{StaticResource ResourceKey=MahApps.Styles.Button.ToolBar}"
-                Focusable="False" Click="btnCliente_Click">
+                Focusable="False" 
+                Click="btnCliente_Click">
             <iconPacks:PackIconMaterial Kind="AccountBox"                                        
                                         Width="Auto"
                                         Height="Auto">
             </iconPacks:PackIconMaterial>
         </Button>
-        <Button x:Name="btnProd" 
-                Margin="30"
+        <Button x:Name="btnProd"  
+                Margin="15"
                 Grid.Column="2"
                 Grid.ColumnSpan="2"
                 Grid.Row="0"
                 Grid.RowSpan="2"      
+                Width="Auto"
+                Height="Auto"
+                MaxWidth="100"
+                MaxHeight="90"
                 VerticalContentAlignment="Center"
                 HorizontalContentAlignment="Center"
                 Style="{StaticResource ResourceKey=MahApps.Styles.Button.ToolBar}"
-                Focusable="False">            
+                Focusable="False" Click="btnProd_Click">            
             <iconPacks:PackIconMaterial Kind="Shopping"                                         
                                         Width="Auto"                                        
                                         Height="Auto">
             </iconPacks:PackIconMaterial>
         </Button>
-        <Button x:Name="btnVendas" 
-                Margin="30"
+        <Button x:Name="btnUser" 
+                Margin="15"
                 Grid.Column="18"
                 Grid.ColumnSpan="2"
                 Grid.Row="0"
                 Grid.RowSpan="2"    
+                Width="Auto"
+                Height="Auto"
+                MaxWidth="100"
+                MaxHeight="90"                
                 VerticalContentAlignment="Center"
                 HorizontalContentAlignment="Center"
                 Style="{StaticResource ResourceKey=MahApps.Styles.Button.ToolBar}"
-                Focusable="False" Click="btnVendas_Click">
+                Focusable="False"
+                Click="btnUser_Click">
             <iconPacks:PackIconMaterial Kind="AccountMultiplePlus"                                         
                                         Width="Auto"
                                         Height="Auto">
             </iconPacks:PackIconMaterial>
         </Button>
-        <Button x:Name="btnUser" 
-                Margin="30"
+        <Button x:Name="btnVendas"  
+                Margin="15"
                 Grid.Column="4"
                 Grid.ColumnSpan="2"
                 Grid.Row="0"
                 Grid.RowSpan="2"    
+                Width="Auto"
+                Height="Auto"
+                MaxWidth="100"
+                MaxHeight="90"                
                 VerticalContentAlignment="Center"
                 HorizontalContentAlignment="Center"
                 Style="{StaticResource ResourceKey=MahApps.Styles.Button.ToolBar}"
@@ -115,5 +134,120 @@
                                         Height="Auto">
             </iconPacks:PackIconMaterial>
         </Button>
+        <Button x:Name="btnLogOff" 
+                Margin="15"
+                Grid.Column="18"
+                Grid.ColumnSpan="2"
+                Grid.Row="13"
+                Grid.RowSpan="2"    
+                Width="Auto"
+                Height="Auto"
+                MaxWidth="100"
+                MaxHeight="90"
+                VerticalContentAlignment="Center"
+                HorizontalContentAlignment="Center"
+                Style="{StaticResource ResourceKey=MahApps.Styles.Button.ToolBar}"
+                Focusable="False"
+                Click="btnLogOff_Click">
+            <iconPacks:PackIconMaterial Kind="AccountLock"                                         
+                                        Width="Auto"
+                                        Height="Auto">
+            </iconPacks:PackIconMaterial>
+        </Button>
+        <TextBox
+            x:Name="lblUserLog" 
+            Grid.Row="14" 
+            Grid.Column="8" 
+            Grid.ColumnSpan="2" 
+            Text="Usuário: "             
+            Height="40"             
+            FontSize="15"
+            VerticalContentAlignment="Bottom"
+            HorizontalContentAlignment="Left"
+            VerticalAlignment="Bottom" 
+            HorizontalAlignment="Left" 
+            BorderThickness="0" 
+            BorderBrush="Transparent" 
+            IsReadOnly="True" 
+            Cursor="Arrow" 
+            Focusable="False" 
+            IsEnabled="True"
+            Style="{StaticResource ResourceKey=MahApps.Styles.Control.WindowCommands}"/>
+        <TextBox
+            x:Name="lblVersao" 
+            Grid.Row="14" 
+            Grid.Column="0" 
+            Grid.ColumnSpan="2" 
+            Text="Versão: " 
+            Height="40"             
+            FontSize="15"
+            VerticalContentAlignment="Bottom"
+            HorizontalContentAlignment="Left"
+            VerticalAlignment="Bottom" 
+            HorizontalAlignment="Left" 
+            BorderThickness="0" 
+            BorderBrush="Transparent" 
+            IsReadOnly="True" 
+            Cursor="Arrow" 
+            Focusable="False" 
+            IsEnabled="True"
+            Style="{StaticResource ResourceKey=MahApps.Styles.Control.WindowCommands}"/>
+        <TextBox 
+            x:Name="lblBase" 
+            Grid.Row="14" 
+            Grid.Column="6" 
+            Grid.ColumnSpan="2" 
+            Text="Base: " 
+            Height="40"             
+            FontSize="15"
+            VerticalContentAlignment="Bottom"
+            HorizontalContentAlignment="Left"
+            VerticalAlignment="Bottom" 
+            HorizontalAlignment="Left" 
+            BorderThickness="0" 
+            BorderBrush="Transparent" 
+            IsReadOnly="True" 
+            Cursor="Arrow" 
+            Focusable="False" 
+            IsEnabled="True"
+            Style="{StaticResource ResourceKey=MahApps.Styles.Control.WindowCommands}"/>
+        <TextBox
+            x:Name="lblIP" 
+            Grid.Row="14" 
+            Grid.Column="2" 
+            Grid.ColumnSpan="2" 
+            Text="IP: " 
+            Height="40"             
+            FontSize="15"
+            VerticalContentAlignment="Bottom"
+            HorizontalContentAlignment="Left"
+            VerticalAlignment="Bottom" 
+            HorizontalAlignment="Left" 
+            BorderThickness="0" 
+            BorderBrush="Transparent" 
+            IsReadOnly="True" 
+            Cursor="Arrow" 
+            Focusable="False" 
+            IsEnabled="True"
+            Style="{StaticResource ResourceKey=MahApps.Styles.Control.WindowCommands}"/>
+        <TextBox
+            x:Name="lblPort" 
+            Grid.Row="14" 
+            Grid.Column="4" 
+            Grid.ColumnSpan="2" 
+            Text="Porta: " 
+            Height="40"             
+            FontSize="15"
+            VerticalContentAlignment="Bottom"
+            HorizontalContentAlignment="Left"
+            VerticalAlignment="Bottom" 
+            HorizontalAlignment="Left" 
+            BorderThickness="0" 
+            BorderBrush="Transparent" 
+            IsReadOnly="True" 
+            Cursor="Arrow" 
+            Focusable="False" 
+            IsEnabled="True" 
+            Style="{StaticResource ResourceKey=MahApps.Styles.Control.WindowCommands}"/>
     </Grid>
 </Controls:MetroWindow>

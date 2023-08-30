@@ -32,12 +32,78 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <TextBox x:Name="txbUser" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="1" Height="40" FontSize="18" Style="{StaticResource ResourceKey=MahApps.Styles.TextBox}"/>
-        <PasswordBox x:Name="txbPass" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="3" Height="40" FontSize="18" Style="{StaticResource ResourceKey=MahApps.Styles.PasswordBox}"/>
-        <CheckBox x:Name="checkAdm" IsChecked="False" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Center" Content="Administrador" Grid.Row="4"/>
-        <Button x:Name="btnSalvar" Focusable="False" Content="Salvar" Grid.Row="5" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="20,0,20,0" Height="40" Style="{StaticResource ResourceKey=MahApps.Styles.Button}" Click="btnSalvar_Click"/>
-        <Button x:Name="btnSair" Focusable="False" Content="Sair" Grid.Row="5" Grid.RowSpan="2" Grid.Column="4" Grid.ColumnSpan="2" Margin="20,0,20,0" Height="40" Style="{StaticResource ResourceKey=MahApps.Styles.Button}" Click="btnSair_Click"/>
-        <Label x:Name="lblUser" Content="Usuário" FontSize="22" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center" Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="0" Style="{StaticResource ResourceKey=MahApps.Styles.Label}"/>
-        <Label x:Name="lblPass" Content="Senha" FontSize="22" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center" Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="2" Style="{StaticResource ResourceKey=MahApps.Styles.Label}"/>
+        <TextBox 
+            x:Name="txbUser" 
+            HorizontalContentAlignment="Left" 
+            VerticalContentAlignment="Center" 
+            Grid.Column="2" 
+            Grid.ColumnSpan="3" 
+            Grid.Row="1" 
+            Height="40" 
+            FontSize="18" 
+            CharacterCasing="Lower"
+            Style="{StaticResource ResourceKey=MahApps.Styles.TextBox}"/>
+        <PasswordBox 
+            x:Name="txbPass" 
+            HorizontalContentAlignment="Left" 
+            VerticalContentAlignment="Center" 
+            Grid.Column="2" 
+            Grid.ColumnSpan="3" 
+            Grid.Row="3" 
+            Height="40" 
+            FontSize="18" 
+            Style="{StaticResource ResourceKey=MahApps.Styles.PasswordBox}"/>
+        <CheckBox 
+            x:Name="checkAdm" 
+            IsChecked="False"
+            Grid.Column="2" 
+            Grid.ColumnSpan="3"
+            HorizontalAlignment="Center" 
+            Content="Administrador" 
+            Grid.Row="4"/>
+        <Button 
+            x:Name="btnSalvar" 
+            Focusable="False" 
+            Content="Salvar" 
+            Grid.Row="5" 
+            Grid.RowSpan="2" 
+            Grid.Column="1" 
+            Grid.ColumnSpan="2" 
+            Margin="20,0,20,0" 
+            Height="40" 
+            Style="{StaticResource ResourceKey=MahApps.Styles.Button}" 
+            Click="btnSalvar_Click"/>
+        <Button 
+            x:Name="btnSair" 
+            Focusable="False" 
+            Content="Sair" 
+            Grid.Row="5" 
+            Grid.RowSpan="2" 
+            Grid.Column="4" 
+            Grid.ColumnSpan="2" 
+            Margin="20,0,20,0" 
+            Height="40" 
+            Style="{StaticResource ResourceKey=MahApps.Styles.Button}" 
+            Click="btnSair_Click"/>
+        <Label 
+            x:Name="lblUser" 
+            Content="Usuário" 
+            FontSize="22" 
+            VerticalContentAlignment="Bottom" 
+            HorizontalContentAlignment="Center" 
+            Grid.Column="2" 
+            Grid.ColumnSpan="3" 
+            Grid.Row="0" 
+            Style="{StaticResource ResourceKey=MahApps.Styles.Label}"/>
+        <Label 
+            x:Name="lblPass" 
+            Content="Senha" 
+            FontSize="22" 
+            VerticalContentAlignment="Bottom" 
+            HorizontalContentAlignment="Center" 
+            Grid.Column="2" 
+            Grid.ColumnSpan="3" 
+            Grid.Row="2" 
+            Style="{StaticResource ResourceKey=MahApps.Styles.Label}"/>
     </Grid>
 </Controls:MetroWindow>

@@ -8,15 +8,19 @@ using static TSales.MainWindow;
 
 namespace TSales.Views {
     public partial class PageClient : MetroWindow {
-        List<Clientes> clientes = new List<Clientes>();        
+        List<Clientes> clientes = new List<Clientes>();
         public PageClient() {
             InitializeComponent();
-
+            if (txbSearch.Focus()) {
+                clientes.Clear();
+                Rel();
+            }
         }
         private void MetroWindow_Loaded(object sender, System.Windows.RoutedEventArgs e) {
             Rel();
         }
         public void Rel() {
+            Retorno.ItemsSource = null;
             var connection = DbConnectionManager.Instance.OpenConnection();
             string Clients = "SELECT codigo, nome, cpfcnpj FROM clientes;";
             NpgsqlCommand cmd = new NpgsqlCommand(Clients, connection);
@@ -41,7 +45,6 @@ namespace TSales.Views {
             PageCadastro pageCadastro = new PageCadastro();
             pageCadastro.ShowDialog();
         }
-
         private void btnDelete_Click(object sender, RoutedEventArgs e) {
             if (Retorno.SelectedItem != null) {
                 var selectedItem = (Clientes)Retorno.SelectedItem;
@@ -70,6 +73,10 @@ namespace TSales.Views {
             }
             Retorno.Items.Refresh();
             DbConnectionManager.Instance.CloseConnection();
+        }
+        private void txbSearch_Click(object sender, RoutedEventArgs e) {
+            clientes.Clear();
+            Rel();
         }
     }
 }
