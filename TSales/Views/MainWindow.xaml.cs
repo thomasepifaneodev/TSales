@@ -6,12 +6,11 @@ using System.Windows;
 using System.IO;
 using System;
 using System.Data;
-using TSales.Classes;
 
 namespace TSales {
     public partial class MainWindow : MetroWindow {
-        string userconnect;
-        static string conection;
+        string? userconnect;
+        static string? conection;       
 
         IniFile ini = new IniFile();
         NpgsqlConnection connect = new NpgsqlConnection();
@@ -44,13 +43,21 @@ namespace TSales {
             string password = loginResult.Password;
 
             userconnect = username;
-            ini.Write("currentuser", username);
+            ini.Write("currentuser", username);           
 
-            lblUserLog.Text = "Usuário: " + ini.Read("currentuser");
-
-            if (IsValidUser(username, password) == "loginaceito") {
+            if (IsValidUser(username, password) == "loginaceito") {                
                 IsAdm();
-            } else {
+                lblUserLog.Text = "Usuário: " + ini.Read("currentuser");
+                lblVersao.Text = "Versão: " + "1.0";
+                lblIP.Text = "IP: " + ini.Read("ip");
+                lblPort.Text = "Porta: " + ini.Read("port");
+                lblBase.Text = "Base: " + ini.Read("base");
+                lblVersao.Visibility = Visibility.Visible;
+                lblIP.Visibility = Visibility.Visible;
+                lblPort.Visibility = Visibility.Visible;
+                lblBase.Visibility = Visibility.Visible;
+                lblUserLog.Visibility = Visibility.Visible;
+            } else {                
                 await this.ShowMessageAsync("Login Falhou", "Usuário e/ou senha inválido.");
                 MetroWindow_Loaded(sender, e);
             }
@@ -60,7 +67,6 @@ namespace TSales {
             public static DbConnectionManager Instance => instance.Value;
 
             private NpgsqlConnection connection;
-
             private DbConnectionManager() {
                 connection = new NpgsqlConnection(conection);
             }
@@ -97,7 +103,7 @@ namespace TSales {
                 NpgsqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read()) {
                     if (reader.GetBoolean(0)) {
-                        reader.Close();
+                        reader.Close();                        
                         return "loginaceito";
                     }
                 }
@@ -112,11 +118,7 @@ namespace TSales {
             page.ShowDialog();
         }
         private void MetroWindow_Loaded(object sender, RoutedEventArgs e) {
-            ShowLogin(sender, e);
-            lblVersao.Text = "Versão: " + "1.0";
-            lblIP.Text = "IP: " + ini.Read("ip");
-            lblPort.Text = "Porta: " + ini.Read("port");
-            lblBase.Text = "Base: " + ini.Read("base");
+            ShowLogin(sender, e);           
         }
         public void IsAdm() {
             string sql = $"SELECT adm = TRUE AS verificado FROM users WHERE login = '{userconnect}';";

@@ -9,47 +9,38 @@ using System.Text.RegularExpressions;
 using static TSales.MainWindow;
 
 namespace TSales.Views {
-    /// <summary>
-    /// Lógica interna para PageCadastro.xaml
-    /// </summary>
-    public partial class PageCadastro : MetroWindow {
-        bool rows;
+    public partial class PageCadastro : MetroWindow {        
         public PageCadastro() {
             InitializeComponent();
-
             txbNome.Focus();
         }
         private void btnSave_Click(object sender, RoutedEventArgs e) {
             var connection = DbConnectionManager.Instance.OpenConnection();
-            try {
-                string sql = "SELECT insertclient(@Codigo, @Nome, @CpfCnpj, @Cidade, @Telefone, @Email, @Cr)";
-                NpgsqlCommand cmd = new NpgsqlCommand(sql, connection);
-                cmd.Parameters.AddWithValue("@Codigo", int.Parse(txbCodigo.Text));
-                cmd.Parameters.AddWithValue("@Nome", txbNome.Text);
-                cmd.Parameters.AddWithValue("@CpfCnpj", txbCpfcnpj.Text);
-                cmd.Parameters.AddWithValue("@Cidade", txbCidade.Text);
-                cmd.Parameters.AddWithValue("@Telefone", txbTelefone.Text);
-                cmd.Parameters.AddWithValue("@Email", txbEmail.Text);
-                cmd.Parameters.AddWithValue("@Email", txbEmail.Text);
-                cmd.Parameters.AddWithValue("@Cr", txbCr.Text);
-                NpgsqlDataReader reader = cmd.ExecuteReader();
-                rows = reader.HasRows;
-                if (rows == true) {
-                    MessageBox.Show("Dados inseridos com sucesso!");
 
-                }
-            } catch (Exception) {
-                MessageBox.Show("Preencha todos os dados!");
-            }
+            string sql = "INSERT INTO public.clientes VALUES(@Codigo, @Nome, @CpfCnpj, @Cidade, @Telefone, @Email, @Cr)";
+            NpgsqlCommand cmd = new NpgsqlCommand(sql, connection);
+            cmd.Parameters.AddWithValue("@Codigo", int.Parse(txbCodigo.Text));
+            cmd.Parameters.AddWithValue("@Nome", txbNome.Text);
+            cmd.Parameters.AddWithValue("@CpfCnpj", txbCpfcnpj.Text);
+            cmd.Parameters.AddWithValue("@Cidade", txbCidade.Text);
+            cmd.Parameters.AddWithValue("@Telefone", txbTelefone.Text);
+            cmd.Parameters.AddWithValue("@Email", txbEmail.Text);
+            cmd.Parameters.AddWithValue("@Email", txbEmail.Text);
+            cmd.Parameters.AddWithValue("@Cr", txbCr.Text);
+            try {
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("Dados inseridos com sucesso!");
+            } catch (Exception ex) {
+                MessageBox.Show(ex.ToString());            }
             DbConnectionManager.Instance.CloseConnection();
             this.Close();
         }
         private void Window_Loaded(object sender, RoutedEventArgs e) {
             var connection = DbConnectionManager.Instance.OpenConnection();
-            string sql = $"SELECT CASE WHEN MAX(codigo) + 1 IS NULL THEN 1 ELSE MAX(codigo) + 1 END codigo FROM clientes";
+            string sql = $"SELECT nextval('clientes_codigo')";
             using (NpgsqlCommand cmd = new NpgsqlCommand(sql, connection)) {
                 // Obtendo o resultado
-                object result = cmd.ExecuteScalar();
+                object? result = cmd.ExecuteScalar();
                 // Verificando se o resultado não é nulo
                 if (result != DBNull.Value && result != null) {
                     // Convertendo o resultado para inteiro
@@ -64,7 +55,7 @@ namespace TSales.Views {
             if (e.Key == Key.Enter) {
                 // Define o foco para o próximo controle
                 TraversalRequest request = new TraversalRequest(FocusNavigationDirection.Next);
-                UIElement elementWithFocus = Keyboard.FocusedElement as UIElement;
+                UIElement? elementWithFocus = Keyboard.FocusedElement as UIElement;
                 if (elementWithFocus != null) {
                     elementWithFocus.MoveFocus(request);
                 }
@@ -75,7 +66,7 @@ namespace TSales.Views {
         private void txbNome_KeyDown(object sender, KeyEventArgs e) {
             if (e.Key == Key.Enter) {
                 TraversalRequest request = new TraversalRequest(FocusNavigationDirection.Next);
-                UIElement elementWithFocus = Keyboard.FocusedElement as UIElement;
+                UIElement? elementWithFocus = Keyboard.FocusedElement as UIElement;
                 if (elementWithFocus != null) {
                     elementWithFocus.MoveFocus(request);
                 }
@@ -85,7 +76,7 @@ namespace TSales.Views {
         private void txbCpfcnpj_KeyDown(object sender, KeyEventArgs e) {
             if (e.Key == Key.Enter) {
                 TraversalRequest request = new TraversalRequest(FocusNavigationDirection.Next);
-                UIElement elementWithFocus = Keyboard.FocusedElement as UIElement;
+                UIElement? elementWithFocus = Keyboard.FocusedElement as UIElement;
                 if (elementWithFocus != null) {
                     elementWithFocus.MoveFocus(request);
                 }
@@ -96,7 +87,7 @@ namespace TSales.Views {
             if (e.Key == Key.Enter) {
                 // Define o foco para o próximo controle
                 TraversalRequest request = new TraversalRequest(FocusNavigationDirection.Next);
-                UIElement elementWithFocus = Keyboard.FocusedElement as UIElement;
+                UIElement? elementWithFocus = Keyboard.FocusedElement as UIElement;
                 if (elementWithFocus != null) {
                     elementWithFocus.MoveFocus(request);
                 }
@@ -108,7 +99,7 @@ namespace TSales.Views {
             if (e.Key == Key.Enter) {
                 // Define o foco para o próximo controle
                 TraversalRequest request = new TraversalRequest(FocusNavigationDirection.Next);
-                UIElement elementWithFocus = Keyboard.FocusedElement as UIElement;
+                UIElement? elementWithFocus = Keyboard.FocusedElement as UIElement;
                 if (elementWithFocus != null) {
                     elementWithFocus.MoveFocus(request);
                 }
@@ -120,7 +111,7 @@ namespace TSales.Views {
             if (e.Key == Key.Enter) {
                 // Define o foco para o próximo controle
                 TraversalRequest request = new TraversalRequest(FocusNavigationDirection.Next);
-                UIElement elementWithFocus = Keyboard.FocusedElement as UIElement;
+                UIElement? elementWithFocus = Keyboard.FocusedElement as UIElement;
                 if (elementWithFocus != null) {
                     elementWithFocus.MoveFocus(request);
                 }
@@ -132,7 +123,7 @@ namespace TSales.Views {
             if (e.Key == Key.Enter) {
                 // Define o foco para o próximo controle
                 TraversalRequest request = new TraversalRequest(FocusNavigationDirection.Next);
-                UIElement elementWithFocus = Keyboard.FocusedElement as UIElement;
+                UIElement? elementWithFocus = Keyboard.FocusedElement as UIElement;
                 if (elementWithFocus != null) {
                     elementWithFocus.MoveFocus(request);
                 }
@@ -144,7 +135,7 @@ namespace TSales.Views {
             if (e.Key == Key.Enter) {
                 // Define o foco para o próximo controle
                 TraversalRequest request = new TraversalRequest(FocusNavigationDirection.Next);
-                UIElement elementWithFocus = Keyboard.FocusedElement as UIElement;
+                UIElement? elementWithFocus = Keyboard.FocusedElement as UIElement;
                 if (elementWithFocus != null) {
                     elementWithFocus.MoveFocus(request);
                 }
@@ -155,7 +146,7 @@ namespace TSales.Views {
         private void txbEmail_KeyDown(object sender, KeyEventArgs e) {
             if (e.Key == Key.Enter) {
                 // Encontre o botão de salvar no visual tree
-                Button btnsave = FindSaveButton();
+                Button? btnsave = FindSaveButton();
 
                 // Verifique se o botão foi encontrado e execute a ação de clique
                 if (btnsave != null) {
@@ -164,8 +155,8 @@ namespace TSales.Views {
                 }
             }
         }
-        private Button FindSaveButton() {
-            PageCadastro cadastrosave = Application.Current.MainWindow as PageCadastro;
+        private Button? FindSaveButton() {
+            PageCadastro? cadastrosave = Application.Current.MainWindow as PageCadastro;
             return cadastrosave?.FindName("btnSave") as Button;
         }
 

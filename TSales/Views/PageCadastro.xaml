@@ -56,9 +56,11 @@
             Height="30" 
             FontSize="15" 
             MaxLength="8"
+            IsEnabled="False"
             Style="{StaticResource ResourceKey=MahApps.Styles.TextBox}" 
             KeyDown="txbCodigo_KeyDown" 
-            CharacterCasing="Upper" PreviewTextInput="txbCodigo_PreviewTextInput"/>        
+            CharacterCasing="Upper" 
+            PreviewTextInput="txbCodigo_PreviewTextInput"/>        
         <Label 
             Content="Nome" 
             Grid.Row="0" 
