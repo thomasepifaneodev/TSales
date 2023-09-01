@@ -16,7 +16,7 @@ namespace TSales.Views {
                 Rel();
             }
         }
-        private void MetroWindow_Loaded(object sender, System.Windows.RoutedEventArgs e) {
+        public void MetroWindow_Loaded(object sender, System.Windows.RoutedEventArgs e) {
             Rel();
         }
         public void Rel() {
@@ -44,6 +44,8 @@ namespace TSales.Views {
         private void btnNew_Click(object sender, System.Windows.RoutedEventArgs e) {
             PageCadastro pageCadastro = new PageCadastro();
             pageCadastro.ShowDialog();
+            clientes.Clear();
+            Rel();
         }
         private void btnDelete_Click(object sender, RoutedEventArgs e) {
             if (Retorno.SelectedItem != null) {
@@ -74,9 +76,42 @@ namespace TSales.Views {
             Retorno.Items.Refresh();
             DbConnectionManager.Instance.CloseConnection();
         }
+        public void selectItens() {
+            var connection = DbConnectionManager.Instance.OpenConnection();
+            if (Retorno.SelectedItem != null) {
+                var selectedItem = (Clientes)Retorno.SelectedItem;
+                try {
+                    using (NpgsqlConnection con = new NpgsqlConnection(connection.ConnectionString)) {
+                        string selectQuery = $"SELECT codigo, nome, cpfcnpj, cidade, telefone, email, cr FROM public.clientes WHERE codigo = {selectedItem.Codigo}";
+                        using (NpgsqlCommand command = new NpgsqlCommand(selectQuery, connection)) {
+                            NpgsqlDataReader readerClients = command.ExecuteReader();
+                            ExibClient newExib = new ExibClient();
+                            readerClients.Read();
+                            newExib.txbCodigo.Text = readerClients.GetInt32(0).ToString();
+                            newExib.txbNome.Text = readerClients.GetString(1);
+                            newExib.txbCpfcnpj.Text = readerClients.GetString(2);  
+                            newExib.txbCidade.Text = readerClients.GetString(3);
+                            newExib.txbTelefone.Text = readerClients.GetString(4);
+                            newExib.txbEmail.Text = readerClients.GetString(5);
+                            newExib.txbCr.Text = readerClients.GetString(6);
+                            connection.Close();
+                            newExib.ShowDialog();                                                   
+                        }
+                    }                    
+                } catch (Exception ex) {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            clientes.Clear();
+            Rel();
+            DbConnectionManager.Instance.CloseConnection();                     
+        }
         private void txbSearch_Click(object sender, RoutedEventArgs e) {
             clientes.Clear();
             Rel();
+        }
+        private void btnBuscar_Click(object sender, RoutedEventArgs e) {
+            selectItens();
         }
     }
 }
