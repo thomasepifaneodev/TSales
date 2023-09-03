@@ -7,7 +7,6 @@ using System.Windows;
 using System;
 using System.Text.RegularExpressions;
 using static TSales.MainWindow;
-using TSales.Classes;
 
 namespace TSales.Views {
     public partial class ExibClient : MetroWindow {

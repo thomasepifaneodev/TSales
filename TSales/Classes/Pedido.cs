@@ -1,5 +1,4 @@
-﻿
-namespace TSales.Classes
+﻿namespace TSales.Classes
 {
     internal class Pedido
     {

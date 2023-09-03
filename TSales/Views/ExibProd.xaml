@@ -1,22 +1,22 @@
-﻿<Controls:MetroWindow x:Class="TSales.Views.PageCadastroProd"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
-        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"    
-        xmlns:local="clr-namespace:TSales.Views"
-        mc:Ignorable="d"
-        Title="PageCadastroProd" 
-        Height="480" 
-        MinHeight="480"        
-        MaxHeight="480"
-        Width="600"
-        MinWidth="600"
-        MaxWidth="600"
-        ResizeMode="NoResize"
-        WindowStartupLocation="CenterScreen" 
-        Loaded="MetroWindow_Loaded">
+﻿<Controls:MetroWindow 
+     x:Class="TSales.Views.ExibProd"
+     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+     xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+     xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"   
+     xmlns:local="clr-namespace:TSales.Views"
+     mc:Ignorable="d"
+     Title="ExibProd" 
+     Height="480" 
+     MinHeight="480"        
+     MaxHeight="480"
+     Width="600"
+     MinWidth="600"
+     MaxWidth="600"
+     ResizeMode="NoResize"
+     WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -79,6 +79,7 @@
              MaxLength="50"
              Height="30" 
              FontSize="15" 
+             IsEnabled="False"
              Style="{StaticResource ResourceKey=MahApps.Styles.TextBox}" 
              KeyDown="txbGrupo_KeyDown" 
              CharacterCasing="Upper"/>
@@ -100,6 +101,7 @@
             Height="30"             
             FontSize="15" 
             MaxLength="60"
+            IsEnabled="False"
             Style="{StaticResource ResourceKey=MahApps.Styles.TextBox}" 
             KeyDown="txbDescricao_KeyDown" 
             CharacterCasing="Upper"/>
@@ -110,7 +112,7 @@
             Grid.ColumnSpan="2" 
             HorizontalAlignment="Left" 
             HorizontalContentAlignment="Left"
-            FontSize="15"                   
+            FontSize="15"                
             Style="{StaticResource ResourceKey=MahApps.Styles.Label}"/>
         <TextBox 
              x:Name="txbCusto" 
@@ -121,6 +123,7 @@
              TextAlignment="Center"              
              Height="30" 
              FontSize="15" 
+             IsEnabled="False"
              Style="{StaticResource ResourceKey=MahApps.Styles.TextBox}" 
              KeyDown="txbCusto_KeyDown" 
              CharacterCasing="Upper" 
@@ -146,6 +149,7 @@
             Height="30" 
             FontSize="15" 
             MaxLength="15"
+            IsEnabled="False"
             Style="{StaticResource ResourceKey=MahApps.Styles.TextBox}" 
             KeyDown="txbPrice_KeyDown" 
             CharacterCasing="Upper" PreviewTextInput="txbPrice_PreviewTextInput"/>
@@ -156,7 +160,7 @@
             Grid.ColumnSpan="2" 
             HorizontalAlignment="Left" 
             HorizontalContentAlignment="Left"
-            FontSize="15"             
+            FontSize="15"            
             Style="{StaticResource ResourceKey=MahApps.Styles.Label}"/>
         <TextBox 
             x:Name="txbUnid" 
@@ -170,9 +174,10 @@
             Height="30" 
             FontSize="15" 
             MaxLength="80"
+            IsEnabled="False"
             Style="{StaticResource ResourceKey=MahApps.Styles.TextBox}" 
             KeyDown="txbUnid_KeyDown" 
-            CharacterCasing="Upper"/>        
+            CharacterCasing="Upper"/>
         <Label 
             Content="Estoque" 
             Grid.Row="3" 
@@ -192,6 +197,7 @@
             Height="30" 
             FontSize="15" 
             MaxLength="15"
+            IsEnabled="False"
             Style="{StaticResource ResourceKey=MahApps.Styles.TextBox}"             
             CharacterCasing="Upper" 
             KeyDown="txbEstoque_KeyDown"
@@ -214,6 +220,7 @@
             TextAlignment="Center"             
             Height="30" 
             FontSize="15" 
+            IsEnabled="False"
             Style="{StaticResource ResourceKey=MahApps.Styles.TextBox}" 
             KeyDown="txbLucro_KeyDown" 
             CharacterCasing="Upper" 
@@ -237,6 +244,7 @@
             TextAlignment="Center"             
             Height="30" 
             FontSize="15" 
+            IsEnabled="False"
             Style="{StaticResource ResourceKey=MahApps.Styles.TextBox}" 
             KeyDown="txbCodean_KeyDown" 
             CharacterCasing="Upper" 
@@ -247,17 +255,27 @@
             Grid.Row="6" 
             Grid.Column="0"             
             Grid.ColumnSpan="2"
-            Width="80" 
+            Width="65" 
             Height="35" 
             Content="Salvar"
+            IsEnabled="False"
             Style="{StaticResource ResourceKey=MahApps.Styles.Button}" 
             Click="btnSave_Click"/>
         <Button 
-            x:Name="btnExportar" 
-            Grid.Row="6" 
+            x:Name="btnEdit" 
+            Grid.Row="6"
             Grid.Column="1" 
             Grid.ColumnSpan="2"
-            Width="80" 
+            Width="65" 
+            Height="35" 
+            Content="Editar"
+            Style="{StaticResource ResourceKey=MahApps.Styles.Button}" Click="btnEdit_Click"/>
+        <Button 
+            x:Name="btnExportar" 
+            Grid.Row="6" 
+            Grid.Column="2" 
+            Grid.ColumnSpan="2"
+            Width="65" 
             Height="35" 
             Content="Exportar"
             Style="{StaticResource ResourceKey=MahApps.Styles.Button}"/>
@@ -266,7 +284,7 @@
             Grid.Row="6" 
             Grid.Column="5" 
             Grid.ColumnSpan="2" 
-            Width="80" 
+            Width="65" 
             Height="35" 
             Content="Exit"
             Style="{StaticResource ResourceKey=MahApps.Styles.Button}" 

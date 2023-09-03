@@ -71,7 +71,7 @@
             Grid.Column="2"             
             Content="Exibir"                         
             Style="{StaticResource ResourceKey=MahApps.Styles.Button}"
-            Focusable="False"/>
+            Focusable="False" Click="btnBuscar_Click"/>
         <Button 
             x:Name="btnExit" 
             Margin="5"
@@ -79,7 +79,7 @@
             Grid.Column="10"             
             Content="Exit"             
             Style="{StaticResource ResourceKey=MahApps.Styles.Button}"
-            Focusable="False"/>
+            Focusable="False" Click="btnExit_Click"/>
         <DataGrid 
             x:Name="Retorno"                    
             AutoGenerateColumns="False"            
