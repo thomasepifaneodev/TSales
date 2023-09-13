@@ -1,6 +1,5 @@
 ﻿using MahApps.Metro.Controls;
 using Npgsql;
-using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows;
@@ -56,7 +55,7 @@ namespace TSales.Views
             try
             {
                 cmd.ExecuteNonQuery();
-                MessageBox.Show("Dados inseridos com sucesso!");
+                MessageBox.Show("Dados alterados com sucesso!");
             }
             catch (Exception ex)
             {

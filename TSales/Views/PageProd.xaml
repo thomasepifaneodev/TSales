@@ -7,10 +7,12 @@
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:local="clr-namespace:TSales.Views"
         mc:Ignorable="d"
+        Title="Produtos"
         Height="550" 
         Width="900"
         WindowStartupLocation="CenterScreen"
-        ResizeMode="CanMinimize" Loaded="MetroWindow_Loaded">
+        ResizeMode="CanMinimize" 
+        Loaded="MetroWindow_Loaded">
     <Grid 
         AutomationProperties.IsRowHeader="True" 
         Cursor="Hand">

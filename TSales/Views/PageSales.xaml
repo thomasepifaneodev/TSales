@@ -1,0 +1,125 @@
+﻿<Controls:MetroWindow x:Class="TSales.Views.PageSales"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        xmlns:local="clr-namespace:TSales.Views"
+        mc:Ignorable="d"
+        Title="Vendas" 
+        Height="550" 
+        Width="900"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="CanMinimize" Loaded="MetroWindow_Loaded">
+    <Grid 
+     AutomationProperties.IsRowHeader="True" 
+     Cursor="Hand">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+        <Button 
+         x:Name="btnNew" 
+         Margin="5"
+         Grid.Row="9"             
+         Grid.Column="1"             
+         Content="Novo"                 
+         Style="{StaticResource ResourceKey=MahApps.Styles.Button}"
+         Focusable="False"/>
+        <Button 
+         x:Name="btnDelete"      
+         Margin="5"
+         Grid.Row="9" 
+         Grid.Column="3"                         
+         Content="Delete"
+         Style="{StaticResource ResourceKey=MahApps.Styles.Button}"
+         Focusable="False"/>
+        <Button 
+         x:Name="btnExport" 
+         Margin="5"
+         Grid.Row="9" 
+         Grid.Column="4"                         
+         Content="Exportar"
+         Style="{StaticResource ResourceKey=MahApps.Styles.Button}"
+         Focusable="False"/>
+        <Button 
+         x:Name="btnBuscar" 
+         Margin="5"
+         Grid.Row="9" 
+         Grid.Column="2"             
+         Content="Exibir"                         
+         Style="{StaticResource ResourceKey=MahApps.Styles.Button}"
+         Focusable="False"/>
+        <Button 
+         x:Name="btnExit" 
+         Margin="5"
+         Grid.Row="9" 
+         Grid.Column="10"             
+         Content="Exit"             
+         Style="{StaticResource ResourceKey=MahApps.Styles.Button}"
+         Focusable="False"/>
+        <DataGrid 
+         x:Name="Retorno"                    
+         AutoGenerateColumns="False"            
+         CanUserAddRows="False"                        
+         BorderThickness="1"
+         Grid.Row="1"
+         Grid.RowSpan="8"            
+         Grid.Column="1"
+         Grid.ColumnSpan="10"     
+         IsReadOnly="True" 
+         HeadersVisibility="Column"             
+         Background="{x:Null}">
+            <DataGrid.Columns>
+                <DataGridTextColumn 
+                 Header="Código" 
+                 Width="100"                                                           
+                 Binding="{Binding Codigo}"          
+                 HeaderStyle="{StaticResource ResourceKey=MahApps.Styles.DataGridColumnHeader.Azure}"/>
+                <DataGridTextColumn 
+                 Header="Cliente" 
+                 Width="3*"                                        
+                 Binding="{Binding Cliente}"                    
+                 HeaderStyle="{StaticResource ResourceKey=MahApps.Styles.DataGridColumnHeader.Azure}"/>
+                <DataGridTextColumn 
+                 Header="Valor" 
+                 Width="*"                                        
+                 Binding="{Binding PrecoTotalFormatado}"
+                 HeaderStyle="{StaticResource ResourceKey=MahApps.Styles.DataGridColumnHeader.Azure}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <TextBox 
+         x:Name="txbSearch" 
+         Grid.Row="0" 
+         Grid.Column="1"             
+         Grid.ColumnSpan="6"             
+         HorizontalContentAlignment="Left"
+         VerticalContentAlignment="Center"
+         Margin="0,10,0,10"
+         FontSize="14"           
+         Style="{StaticResource ResourceKey=MahApps.Styles.TextBox.Search}"/>
+    </Grid>
+</Controls:MetroWindow>

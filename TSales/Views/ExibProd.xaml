@@ -12,9 +12,9 @@
      Height="480" 
      MinHeight="480"        
      MaxHeight="480"
-     Width="600"
-     MinWidth="600"
-     MaxWidth="600"
+     Width="854"
+     MinWidth="854"
+     MaxWidth="854"
      ResizeMode="NoResize"
      WindowStartupLocation="CenterScreen">
     <Grid>
@@ -250,44 +250,42 @@
             CharacterCasing="Upper" 
             MaxLength="14" PreviewTextInput="txbCodean_PreviewTextInput"/>
         <Button 
-            x:Name="btnSave" 
-            IsDefault="True"
-            Grid.Row="6" 
-            Grid.Column="0"             
-            Grid.ColumnSpan="2"
-            Width="65" 
-            Height="35" 
-            Content="Salvar"
-            IsEnabled="False"
-            Style="{StaticResource ResourceKey=MahApps.Styles.Button}" 
-            Click="btnSave_Click"/>
+       x:Name="btnSave" 
+       IsDefault="True"
+       Grid.Row="6" 
+       Grid.Column="0" 
+       Grid.ColumnSpan="1" 
+       Width="100" 
+       Height="35" 
+       Content="Salvar"
+       IsEnabled="False"
+       Style="{StaticResource ResourceKey=MahApps.Styles.Button}" 
+       Click="btnSave_Click"/>
         <Button 
-            x:Name="btnEdit" 
-            Grid.Row="6"
-            Grid.Column="1" 
-            Grid.ColumnSpan="2"
-            Width="65" 
-            Height="35" 
-            Content="Editar"
-            Style="{StaticResource ResourceKey=MahApps.Styles.Button}" Click="btnEdit_Click"/>
+       x:Name="btnEditar" 
+       Grid.Row="6" 
+       Grid.Column="1" 
+       Width="100" 
+       Height="35" 
+       Content="Editar"
+       Style="{StaticResource ResourceKey=MahApps.Styles.Button}" Click="btnEdit_Click"/>
         <Button 
-            x:Name="btnExportar" 
-            Grid.Row="6" 
-            Grid.Column="2" 
-            Grid.ColumnSpan="2"
-            Width="65" 
-            Height="35" 
-            Content="Exportar"
-            Style="{StaticResource ResourceKey=MahApps.Styles.Button}"/>
+       x:Name="btnExportar" 
+       Grid.Row="6" 
+       Grid.Column="2" 
+       Width="100" 
+       Height="35" 
+       Content="Exportar"
+       Style="{StaticResource ResourceKey=MahApps.Styles.Button}"/>
         <Button 
-            x:Name="btnExit" 
-            Grid.Row="6" 
-            Grid.Column="5" 
-            Grid.ColumnSpan="2" 
-            Width="65" 
-            Height="35" 
-            Content="Exit"
-            Style="{StaticResource ResourceKey=MahApps.Styles.Button}" 
-            Click="btnExit_Click"/>
+       x:Name="btnExit" 
+       Grid.Row="6" 
+       Grid.Column="8" 
+       Grid.ColumnSpan="1" 
+       Width="100" 
+       Height="35" 
+       Content="Exit"
+       Style="{StaticResource ResourceKey=MahApps.Styles.Button}" 
+       Click="btnExit_Click"/>
     </Grid>
 </Controls:MetroWindow>

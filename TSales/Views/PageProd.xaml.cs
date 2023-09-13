@@ -3,7 +3,6 @@ using Npgsql;
 using static TSales.MainWindow;
 using TSales.Classes;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Windows;
 using System;
 

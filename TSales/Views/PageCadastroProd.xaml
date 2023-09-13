@@ -240,7 +240,8 @@
             Style="{StaticResource ResourceKey=MahApps.Styles.TextBox}" 
             KeyDown="txbCodean_KeyDown" 
             CharacterCasing="Upper" 
-            MaxLength="14" PreviewTextInput="txbCodean_PreviewTextInput"/>
+            MaxLength="14" 
+            PreviewTextInput="txbCodean_PreviewTextInput"/>
         <Button 
             x:Name="btnSave" 
             IsDefault="True"
