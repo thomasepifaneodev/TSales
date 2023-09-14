@@ -106,9 +106,12 @@
                  HeaderStyle="{StaticResource ResourceKey=MahApps.Styles.DataGridColumnHeader.Azure}"/>
                 <DataGridTextColumn 
                  Header="Valor" 
-                 Width="*"                                        
-                 Binding="{Binding PrecoTotalFormatado}"
-                 HeaderStyle="{StaticResource ResourceKey=MahApps.Styles.DataGridColumnHeader.Azure}"/>
+                 Width="*"                                         
+                 HeaderStyle="{StaticResource ResourceKey=MahApps.Styles.DataGridColumnHeader.Azure}">
+                    <DataGridTextColumn.Binding>
+                        <Binding Path="PrecoTotal" StringFormat="C" ConverterCulture="pt-BR"/>
+                    </DataGridTextColumn.Binding>
+                </DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
         <TextBox 

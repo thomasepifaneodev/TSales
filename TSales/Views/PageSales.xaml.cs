@@ -2,26 +2,25 @@
 using Npgsql;
 using static TSales.MainWindow;
 using TSales.Classes;
-using System.Windows.Documents;
 using System.Collections.Generic;
+using System.Windows.Controls;
+using System.Globalization;
 
 namespace TSales.Views
 {
-    /// <summary>
-    /// Lógica interna para PageSales.xaml
-    /// </summary>
     public partial class PageSales : MetroWindow
     {
-        List<Pedido> pedidos = new List<Pedido>();  
+        List<Pedido> pedidos = new List<Pedido>();
         public PageSales()
         {
             InitializeComponent();
+
         }
         public void Rel()
         {
             Retorno.ItemsSource = null;
             var connection = DbConnectionManager.Instance.OpenConnection();
-            string Prod = "SELECT codigo, cliente, ROUND(precototal, 2) FROM pedidos;";
+            string Prod = "SELECT codigo, cliente, precototal FROM pedidos;";
             NpgsqlCommand cmd = new NpgsqlCommand(Prod, connection);
             NpgsqlDataReader readerPedido = cmd.ExecuteReader();
             while (readerPedido.Read())
@@ -30,11 +29,11 @@ namespace TSales.Views
                 {
                     Codigo = readerPedido.GetInt32(0),
                     Cliente = readerPedido.GetString(1),
-                    PrecoTotal = readerPedido.GetDouble(2),
-                };
-                pedido.PrecoTotalFormatado = string.Format("R$ {0:0.00}", pedido.PrecoTotal);
-                pedidos.Add(pedido);
+                    PrecoTotal = readerPedido.GetDecimal(2),
+                };                
+                pedidos.Add(pedido);                
             }
+
             readerPedido.Close();
             Retorno.ItemsSource = pedidos;
             Retorno.Items.Refresh();
@@ -43,6 +42,6 @@ namespace TSales.Views
         private void MetroWindow_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
             Rel();
-        }       
+        }
     }
 }

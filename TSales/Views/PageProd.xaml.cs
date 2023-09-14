@@ -29,8 +29,7 @@ namespace TSales.Views
                     Codigo = readerClients.GetInt32(0),
                     Descricao = readerClients.GetString(1),
                     PrecoVenda = readerClients.GetDouble(2),
-                };
-                produto.PrecoVendaFormatado = string.Format("R$ {0:0.00}", produto.PrecoVenda);
+                };                
                 produtos.Add(produto);
             }
             readerClients.Close();
