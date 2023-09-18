@@ -6,6 +6,7 @@ using System.Windows;
 using System.IO;
 using System;
 using System.Data;
+using ControlzEx.Theming;
 
 namespace TSales
 {
@@ -19,7 +20,26 @@ namespace TSales
         public MainWindow()
         {
             InitializeComponent();
-            ini.Write("currentuser", "");
+            ModoEscuro();
+            ini.Write("currentuser", "");            
+        }
+        public void ModoEscuro()
+        {
+            string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TSales.ini");
+            IniFile ini = new IniFile();
+            if (!File.Exists(path))
+            {
+                ini.Write("modo", "claro");
+            }
+            if (ini.Read("modo") == "claro")
+            {
+                ThemeManager.Current.ChangeTheme(this, "Light.Cobalt");
+            }
+            else
+            {
+                seletorModo.IsOn = true;
+                ThemeManager.Current.ChangeTheme(this, "Dark.Cobalt");
+            }
         }
         private async void ShowLogin(object sender, RoutedEventArgs e)
         {
@@ -143,7 +163,8 @@ namespace TSales
             page.ShowDialog();
         }
         private void MetroWindow_Loaded(object sender, RoutedEventArgs e)
-        {
+        {      
+
             ShowLogin(sender, e);
         }
         public void IsAdm()
@@ -182,6 +203,25 @@ namespace TSales
         {
             PageSales pageSales = new PageSales();
             pageSales.ShowDialog();
+        }
+        private void seletorModo_Toggled(object sender, RoutedEventArgs e)
+        {
+            if (seletorModo.IsOn)
+            {
+                ThemeManager.Current.ChangeTheme(this, "Dark.Cobalt");
+                ini.Write("modo", "escuro");
+            }
+            else
+            {
+                ThemeManager.Current.ChangeTheme(this, "Light.Cobalt");
+                ini.Write("modo", "claro");
+            }
+        }
+        private void reconfigurarDb_Click(object sender, RoutedEventArgs e)
+        {
+            TelaConfig configuration = new TelaConfig();
+            configuration.ShowDialog();
+
         }
     }
 }

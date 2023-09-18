@@ -5,6 +5,8 @@ using TSales.Classes;
 using System.Collections.Generic;
 using System.Windows;
 using System;
+using System.IO;
+using ControlzEx.Theming;
 
 namespace TSales.Views
 {
@@ -14,6 +16,24 @@ namespace TSales.Views
         public PageProd()
         {
             InitializeComponent();
+            ModoEscuro();
+        }
+        public void ModoEscuro()
+        {
+            string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TSales.ini");
+            IniFile ini = new IniFile();
+            if (!File.Exists(path))
+            {
+                ini.Write("modo", "claro");
+            }
+            if (ini.Read("modo") == "claro")
+            {
+                ThemeManager.Current.ChangeTheme(this, "Light.Cobalt");
+            }
+            else
+            {
+                ThemeManager.Current.ChangeTheme(this, "Dark.Cobalt");
+            }
         }
         public void Rel()
         {
@@ -66,8 +86,8 @@ namespace TSales.Views
                             readerProd.Read();
                             newExib.txbCodigo.Text = readerProd.GetInt32(0).ToString();
                             newExib.txbDescri.Text = readerProd.GetString(1);                            
-                            newExib.txbCusto.Text = readerProd.GetDouble(2).ToString();
-                            newExib.txbPrice.Text = readerProd.GetDouble(3).ToString();
+                            newExib.txbCusto.Text = readerProd.GetDouble(2).ToString("C");
+                            newExib.txbPrice.Text = readerProd.GetDouble(3).ToString("C");
                             newExib.txbGrupo.Text = readerProd.GetString(4);
                             newExib.txbUnid.Text = readerProd.GetString(5);                            
                             newExib.txbLucro.Text = readerProd.GetDouble(6).ToString();

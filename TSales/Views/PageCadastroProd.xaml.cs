@@ -6,12 +6,32 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows;
 using System;
+using System.IO;
+using ControlzEx.Theming;
 
 namespace TSales.Views {
     public partial class PageCadastroProd : MetroWindow {        
         public PageCadastroProd() {
             InitializeComponent();
             txbGrupo.Focus();
+            ModoEscuro();
+        }
+        public void ModoEscuro()
+        {
+            string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TSales.ini");
+            IniFile ini = new IniFile();
+            if (!File.Exists(path))
+            {
+                ini.Write("modo", "claro");
+            }
+            if (ini.Read("modo") == "claro")
+            {
+                ThemeManager.Current.ChangeTheme(this, "Light.Cobalt");
+            }
+            else
+            {
+                ThemeManager.Current.ChangeTheme(this, "Dark.Cobalt");
+            }
         }
         private void btnSave_Click(object sender, RoutedEventArgs e) {
             decimal margemLucro;

@@ -243,7 +243,8 @@
                Width="100" 
                Height="35" 
                Content="Exportar"
-               Style="{StaticResource ResourceKey=MahApps.Styles.Button}"/>
+               Style="{StaticResource ResourceKey=MahApps.Styles.Button}"
+               Click="btnExportar_Click"/>
         <Button 
                x:Name="btnExit" 
                Grid.Row="6" 

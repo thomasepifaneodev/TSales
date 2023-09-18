@@ -3,8 +3,9 @@ using Npgsql;
 using static TSales.MainWindow;
 using TSales.Classes;
 using System.Collections.Generic;
-using System.Windows.Controls;
-using System.Globalization;
+using ControlzEx.Theming;
+using System;
+using System.IO;
 
 namespace TSales.Views
 {
@@ -14,7 +15,24 @@ namespace TSales.Views
         public PageSales()
         {
             InitializeComponent();
-
+            ModoEscuro();
+        }
+        public void ModoEscuro()
+        {
+            string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TSales.ini");
+            IniFile ini = new IniFile();
+            if (!File.Exists(path))
+            {
+                ini.Write("modo", "claro");
+            }
+            if (ini.Read("modo") == "claro")
+            {
+                ThemeManager.Current.ChangeTheme(this, "Light.Cobalt");
+            }
+            else
+            {
+                ThemeManager.Current.ChangeTheme(this, "Dark.Cobalt");
+            }
         }
         public void Rel()
         {

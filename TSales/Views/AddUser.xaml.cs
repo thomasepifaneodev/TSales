@@ -3,6 +3,8 @@ using Npgsql;
 using static TSales.MainWindow;
 using System.Windows;
 using System;
+using ControlzEx.Theming;
+using System.IO;
 
 namespace TSales.Views {
     public partial class AddUser : MetroWindow {
@@ -10,6 +12,24 @@ namespace TSales.Views {
         public AddUser() {
             InitializeComponent();
             txbUser.Focus();
+            ModoEscuro();
+        }
+        public void ModoEscuro()
+        {
+            string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TSales.ini");
+            IniFile ini = new IniFile();
+            if (!File.Exists(path))
+            {
+                ini.Write("modo", "claro");
+            }
+            if (ini.Read("modo") == "claro")
+            {
+                ThemeManager.Current.ChangeTheme(this, "Light.Cobalt");
+            }
+            else
+            {
+                ThemeManager.Current.ChangeTheme(this, "Dark.Cobalt");
+            }
         }
         private void btnSalvar_Click(object sender, System.Windows.RoutedEventArgs e) {
             try {

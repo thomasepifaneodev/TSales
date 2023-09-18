@@ -16,6 +16,14 @@
     WindowState="Maximized"
     WindowStartupLocation="CenterScreen" 
     Loaded="MetroWindow_Loaded">
+    <Controls:MetroWindow.RightWindowCommands>
+        <Controls:WindowCommands>
+            <Controls:ToggleSwitch x:Name="seletorModo" Content="Modo Escuro" VerticalAlignment="Center" HorizontalAlignment="Right" Toggled="seletorModo_Toggled"/>
+            <Button x:Name="reconfigurarDb" Click="reconfigurarDb_Click" >
+                <iconPacks:PackIconEntypo Kind="Database"/>
+            </Button>
+        </Controls:WindowCommands>
+    </Controls:MetroWindow.RightWindowCommands>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>

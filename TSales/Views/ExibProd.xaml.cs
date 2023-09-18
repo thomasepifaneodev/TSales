@@ -4,8 +4,10 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows;
 using System;
+using System.IO;
 using System.Text.RegularExpressions;
 using static TSales.MainWindow;
+using ControlzEx.Theming;
 
 namespace TSales.Views
 {
@@ -14,6 +16,24 @@ namespace TSales.Views
         public ExibProd()
         {
             InitializeComponent();
+            ModoEscuro();
+        }
+        public void ModoEscuro()
+        {
+            string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TSales.ini");
+            IniFile ini = new IniFile();
+            if (!File.Exists(path))
+            {
+                ini.Write("modo", "claro");
+            }
+            if (ini.Read("modo") == "claro")
+            {
+                ThemeManager.Current.ChangeTheme(this, "Light.Cobalt");
+            }
+            else
+            {
+                ThemeManager.Current.ChangeTheme(this, "Dark.Cobalt");
+            }
         }
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
@@ -45,8 +65,8 @@ namespace TSales.Views
             NpgsqlCommand cmd = new NpgsqlCommand(sql, connection);
             cmd.Parameters.AddWithValue("@Codigo", int.Parse(txbCodigo.Text));
             cmd.Parameters.AddWithValue("@Descri", txbDescri.Text);
-            cmd.Parameters.AddWithValue("@CustoUnit", decimal.Parse(txbCusto.Text));
-            cmd.Parameters.AddWithValue("@PrecoVend", decimal.Parse(txbPrice.Text));
+            cmd.Parameters.AddWithValue("@CustoUnit", decimal.Parse(txbCusto.Text.Replace("R$", "")));
+            cmd.Parameters.AddWithValue("@PrecoVend", decimal.Parse(txbPrice.Text.Replace("R$", "")));
             cmd.Parameters.AddWithValue("@Grupo", txbGrupo.Text);
             cmd.Parameters.AddWithValue("@Unidade", txbUnid.Text);
             cmd.Parameters.AddWithValue("@MargemLucro", margemLucro);

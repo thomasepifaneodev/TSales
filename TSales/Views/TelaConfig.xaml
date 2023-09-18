@@ -1,0 +1,72 @@
+﻿<Controls:MetroWindow x:Class="TSales.Views.TelaConfig"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        xmlns:local="clr-namespace:TSales.Views"
+        mc:Ignorable="d"
+        Title="Conexão" 
+        Height="550" 
+        Width="450" 
+        Loaded="Window_Loaded"
+        WindowStartupLocation="CenterScreen"
+        WindowState="Normal" 
+        ResizeMode="NoResize"               
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"            
+        PreviewKeyDown="Window_PreviewKeyDown">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="15"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" FontFamily="Montserrat" Content="IP" FontSize="20" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="156" Style="{StaticResource ResourceKey=MahApps.Styles.Label}"/>
+        <Label Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" FontFamily="Montserrat" Content="Porta" FontSize="20" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="156" Style="{StaticResource ResourceKey=MahApps.Styles.Label}"/>
+        <Label Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" FontFamily="Montserrat" Content="Base" FontSize="20" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="156" Style="{StaticResource ResourceKey=MahApps.Styles.Label}"/>
+        <TextBox x:Name="txbIp" VerticalContentAlignment="Center" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" Grid.Row="1" Text="127.0.0.1" FontSize="18" VerticalAlignment="Center" Height="55" Width="150" Style="{StaticResource ResourceKey=MahApps.Styles.TextBox}" KeyDown="txbIp_KeyDown" GotFocus="txbIp_GotFocus" MaxLines="1" MaxLength="15" PreviewKeyDown="txbIp_PreviewKeyDown" PreviewTextInput="txbIp_PreviewTextInput"/>
+        <TextBox x:Name="txbPorta" VerticalContentAlignment="Center" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" Grid.Row="3" Text="5432" FontSize="18" Height="55" VerticalAlignment="Center" Width="120" Style="{StaticResource ResourceKey=MahApps.Styles.TextBox}" KeyDown="txbPorta_KeyDown" GotFocus="txbPorta_GotFocus" MaxLines="1" MaxLength="10" PreviewTextInput="txbPorta_PreviewTextInput" PreviewKeyDown="txbPorta_PreviewKeyDown" />
+        <TextBox x:Name="txbBase" VerticalContentAlignment="Center" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" Grid.Row="5" Text="base_" FontSize="18" Height="55" VerticalAlignment="Center" Width="200" Style="{StaticResource ResourceKey=MahApps.Styles.TextBox}" KeyDown="txbBase_KeyDown" GotFocus="txbBase_GotFocus" MaxLines="1" MaxLength="100" PreviewKeyDown="txbBase_PreviewKeyDown" PreviewTextInput="txbBase_PreviewTextInput"/>
+        <Button 
+            x:Name="btnSalvar" 
+            Content="Salvar"             
+            Grid.Row="6" 
+            Grid.Column="0"             
+            Grid.ColumnSpan="2"                         
+            VerticalAlignment="Center" 
+            FontSize="15"
+            Height="40" 
+            Width="110"             
+            Style="{StaticResource ResourceKey=MahApps.Styles.Button}"             
+            Click="btnSalvar_Click"        
+            BorderThickness="1"/>
+        <Button 
+            x:Name="btnExit" 
+            Content="Sair"              
+            Grid.Row="6" 
+            Grid.Column="2"             
+            Grid.ColumnSpan="2"             
+            VerticalAlignment="Center" 
+            Height="40" 
+            FontSize="15"
+            Width="110"             
+            Style="{StaticResource ResourceKey=MahApps.Styles.Button}"             
+            Click="btnExit_Click"          
+            BorderThickness="1"/>
+    </Grid>
+</Controls:MetroWindow>
