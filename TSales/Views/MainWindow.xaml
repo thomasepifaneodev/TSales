@@ -16,6 +16,9 @@
     WindowState="Maximized"
     WindowStartupLocation="CenterScreen" 
     Loaded="MetroWindow_Loaded">
+    <Controls:MetroWindow.Background>
+        <ImageBrush ImageSource="/Recursos/background.jpg" Stretch="UniformToFill" />
+    </Controls:MetroWindow.Background>
     <Controls:MetroWindow.RightWindowCommands>
         <Controls:WindowCommands>
             <Controls:ToggleSwitch x:Name="seletorModo" Content="Modo Escuro" VerticalAlignment="Center" HorizontalAlignment="Right" Toggled="seletorModo_Toggled"/>
@@ -167,7 +170,7 @@
             Visibility="Collapsed"
             Grid.Row="14" 
             Grid.Column="12" 
-            Grid.ColumnSpan="2" 
+            Grid.ColumnSpan="3" 
             Text="Usuário: "             
             Height="40"             
             FontSize="15"

@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Recursos\background.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="MahApps.Metro" Version="2.4.10" />
     <PackageReference Include="MahApps.Metro.IconPacks" Version="4.11.0" />
     <PackageReference Include="Npgsql" Version="7.0.4" />
@@ -15,6 +19,10 @@
 
   <ItemGroup>
     <Folder Include="Patchs\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Recursos\background.jpg" />
   </ItemGroup>
 
 </Project>

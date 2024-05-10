@@ -146,16 +146,16 @@ namespace TSales
                     if (reader.GetBoolean(0))
                     {
                         reader.Close();
-                        return "loginaceito";
+                        return "loginaceito";                        
                     }
                 }
                 reader.Close();
-                return "naopermitido";
+                return "naopermitido";                
             }
             catch (NpgsqlException)
             {
-                return "falhanaconexao";
-            }
+                return "falhanaconexao";                
+            }            
         }
         private void btnCliente_Click(object sender, System.Windows.RoutedEventArgs e)
         {

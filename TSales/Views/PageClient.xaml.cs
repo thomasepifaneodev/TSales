@@ -1,11 +1,9 @@
 ﻿using ControlzEx.Theming;
 using MahApps.Metro.Controls;
-using MahApps.Metro.Controls.Dialogs;
 using Npgsql;
 using System;
 using System.IO;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using System.Windows;
 using TSales.Classes;
 using static TSales.MainWindow;
@@ -41,12 +39,8 @@ namespace TSales.Views
             {
                 ThemeManager.Current.ChangeTheme(this, "Dark.Cobalt");
             }
-        }
-        private async void ShowLogin(object sender, RoutedEventArgs e)
-        {
-            
-        }
-        public void MetroWindow_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        }        
+        public void MetroWindow_Loaded(object sender,RoutedEventArgs e)
         {
             Rel();
         }
@@ -72,11 +66,11 @@ namespace TSales.Views
             Retorno.Items.Refresh();
             DbConnectionManager.Instance.CloseConnection();
         }
-        private void btnExit_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void btnExit_Click(object sender,RoutedEventArgs e)
         {
             this.Close();
         }
-        private void btnNew_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void btnNew_Click(object sender,RoutedEventArgs e)
         {
             PageCadastro pageCadastro = new PageCadastro();
             pageCadastro.ShowDialog();

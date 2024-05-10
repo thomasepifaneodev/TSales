@@ -60,7 +60,7 @@ namespace TSales.Views
             ini.Write("port", $"{port}");
             ini.Write("base", $"{db}");
 
-            MessageBox.Show("Dados Salvos com sucesso!", "ZCopy", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show("Dados Salvos com sucesso!", "TSales", MessageBoxButton.OK, MessageBoxImage.Information);
             this.Close();
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)

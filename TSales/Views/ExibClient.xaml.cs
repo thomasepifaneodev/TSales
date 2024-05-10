@@ -297,14 +297,6 @@ namespace TSales.Views
             txbEmail.IsEnabled = true;
             txbCr.IsEnabled = true;
             btnSave.IsEnabled = true;
-        }
-        private async void Message()
-        {
-            await this.ShowMessageAsync("Teste", "teste", MessageDialogStyle.AffirmativeAndNegative);
-        }
-        private void btnExportar_Click(object sender, RoutedEventArgs e)
-        {
-            Message();
-        }
+        }                  
     }
 }
